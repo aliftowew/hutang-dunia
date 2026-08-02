@@ -136,10 +136,22 @@ main.wrap { padding-top: 22px; padding-bottom: 40px; }
   font-size: 13.5px; color: var(--ink); min-width: 220px;
 }
 .search:focus { outline: 2px solid var(--accent); border-color: transparent; }
-.table-scroll { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.table-scroll { overflow: auto; max-height: 560px; border-radius: 10px; }
+table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.5px; }
 th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
 th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; }
+/* Header tabel tetap menempel saat di-scroll */
+thead th { position: sticky; top: 0; z-index: 3; background: var(--card); }
+/* Baris Indonesia disematkan tepat di bawah header */
+tr.pinned td {
+  position: sticky; top: 41px; z-index: 2;
+  background: var(--accent-soft);
+  border-top: 1px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  font-weight: 600;
+}
+tr.pinned:hover td { background: var(--accent-soft); }
+.pin-badge { font-size: 11px; margin-left: 2px; }
 th.sortable { cursor: pointer; user-select: none; color: var(--ink-soft); font-weight: 600; }
 th.sortable:hover { color: var(--ink); }
 th.sortable.sorted-asc::after { content: " ▲"; font-size: 9px; }

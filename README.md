@@ -14,7 +14,7 @@ Visualisasi interaktif utang pemerintah negara-negara besar dunia — **rasio ut
   3. **Utang Absolut (USD)** — nilai utang dalam miliar dolar AS.
 - **Grafik batang** — peringkat 15 negara teratas untuk metrik terpilih.
 - **Scatter plot (bubble)** — Utang/PDB (X) vs Bunga/APBN (Y), ukuran gelembung = nilai utang. Membantu melihat negara yang utangnya besar *sekaligus* beban bunganya berat ("zona rawan" kanan-atas).
-- **Tabel lengkap** — bisa diurutkan (klik header) dan dicari.
+- **Tabel lengkap** — ~167 negara, bisa diurutkan (klik header) dan dicari. **Indonesia disematkan (pin) di baris paling atas dan tetap menempel (freeze)** bersama header saat tabel di-scroll.
 - **Kartu ringkasan**, **mode terang/gelap**, dan **responsif** (desktop & ponsel).
 
 Peta, grafik, panel, dan tabel semuanya **saling terhubung** — memilih negara di mana pun akan menyorotinya di seluruh tampilan.
@@ -46,6 +46,7 @@ vendor/               # D3, topojson-client, data peta dunia (world-atlas)
 (IMF World Economic Outlook, World Bank, dan dokumen APBN/anggaran nasional) periode **±2023–2024**, dan telah dibulatkan.
 Angka-angka ini **bukan data resmi** — untuk analisis serius, rujuk sumber aslinya.
 
+- Mencakup **~167 negara**. Wilayah yang tetap abu-abu di peta adalah teritori/dependensi tanpa data pemerintah terpisah atau data tak tersedia (mis. Greenland, Sahara Barat, Antarktika, Korea Utara, serta beberapa negara pulau kecil).
 - "Utang" merujuk pada **utang pemerintah bruto** (general government gross debt).
 - "Bunga / APBN" = **pembayaran bunga utang sebagai persentase pendapatan negara**. Ini indikator umum keberlanjutan fiskal; jika memperhitungkan cicilan pokok, beban total bisa jauh lebih tinggi.
 

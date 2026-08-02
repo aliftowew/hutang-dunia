@@ -298,11 +298,14 @@
   }
 
   // ---------- Tabel ----------
+  var PINNED_ISO = '360'; // Indonesia selalu disematkan di baris teratas
+
   function renderTable() {
     var m = state.sortKey;
     var dir = state.sortDir === 'asc' ? 1 : -1;
     var q = state.search.toLowerCase();
     var data = DEBT_DATA.filter(function (d) {
+      if (d.iso === PINNED_ISO) return false; // Indonesia ditangani terpisah (disematkan)
       return !q || d.name.toLowerCase().indexOf(q) >= 0 || d.region.toLowerCase().indexOf(q) >= 0;
     }).sort(function (a, b) {
       var va = a[m], vb = b[m];
@@ -313,17 +316,26 @@
     var tbody = d3.select('#tableBody');
     tbody.html('');
     var d2gScale = colorScale('debtToGdp');
-    data.forEach(function (d) {
+
+    function addRow(d, pinned) {
       var tr = tbody.append('tr')
         .classed('selected', d.iso === state.selectedIso)
+        .classed('pinned', pinned)
         .on('click', function () { selectCountry(d.iso); });
-      tr.append('td').html('<span class="dot" style="background:' + d2gScale(d.debtToGdp) + '"></span>' + d.name);
+      var nameCell = '<span class="dot" style="background:' + d2gScale(d.debtToGdp) + '"></span>' + d.name;
+      if (pinned) nameCell += ' <span class="pin-badge" title="Disematkan">📌</span>';
+      tr.append('td').html(nameCell);
       tr.append('td').text(d.region);
       tr.append('td').attr('class', 'num').text(d.debtToGdp + '%');
       tr.append('td').attr('class', 'num').text(d.interestToRev + '%');
       tr.append('td').attr('class', 'num').text(d3.format(',')(d.debtUsdBn));
       tr.append('td').attr('class', 'num').text(d3.format(',')(d.gdpUsdBn));
-    });
+    }
+
+    // Baris Indonesia yang disematkan (selalu tampil di paling atas)
+    var pinnedCountry = DEBT_BY_ISO[PINNED_ISO];
+    if (pinnedCountry) addRow(pinnedCountry, true);
+    data.forEach(function (d) { addRow(d, false); });
 
     d3.selectAll('#dataTable th.sortable')
       .classed('sorted-asc', function () { return this.dataset.sort === m && state.sortDir === 'asc'; })
