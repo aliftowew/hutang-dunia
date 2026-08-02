@@ -10,6 +10,8 @@
   --radius: 16px;
   --sea: #dce6f5;
   --no-data: #e9edf4;
+  --tooltip-bg: #1a2233;
+  --tooltip-fg: #ffffff;
 }
 :root[data-theme="dark"] {
   --bg: #0e131f;
@@ -22,6 +24,8 @@
   --shadow: 0 1px 3px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
   --sea: #101a2e;
   --no-data: #222c42;
+  --tooltip-bg: #223052;
+  --tooltip-fg: #f4f7fd;
 }
 
 * { box-sizing: border-box; }
@@ -163,9 +167,9 @@ tbody tr.selected { background: var(--accent-soft); box-shadow: inset 3px 0 0 va
 
 /* Tooltip */
 .tooltip {
-  position: fixed; pointer-events: none; z-index: 50; background: var(--ink); color: #fff;
-  padding: 8px 11px; border-radius: 9px; font-size: 12.5px; box-shadow: 0 6px 20px rgba(0,0,0,.25);
-  max-width: 220px; line-height: 1.4;
+  position: fixed; pointer-events: none; z-index: 50; background: var(--tooltip-bg); color: var(--tooltip-fg);
+  padding: 8px 11px; border-radius: 9px; font-size: 12.5px; box-shadow: 0 6px 20px rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.12); max-width: 220px; line-height: 1.4;
 }
 .tooltip b { display: block; font-size: 13.5px; margin-bottom: 2px; }
 .tooltip .tt-row { display: flex; justify-content: space-between; gap: 12px; opacity: .92; }
